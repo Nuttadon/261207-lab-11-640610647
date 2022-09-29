@@ -38,7 +38,8 @@ export default function roomIdMessageRoute(req, res) {
     const rooms = readChatRoomsDB();
     //check if roomId exist
     const roomIdx = rooms.findIndex((x) => x.roomId === roomId);
-    if (roomIdx === -1) return res.status(404).json("Invalid rooms id");
+    if (roomIdx === -1)
+      return res.status(404).json({ ok: false, message: "Invalid room id" });
     //validate body
     if (typeof req.body.text !== "string" || req.body.text.length === 0)
       return res.status(400).json({ ok: false, message: "Invalid text input" });
